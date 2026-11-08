@@ -1,0 +1,65 @@
+PROJETO ATUALIZADO — INGLÊS DOS EUA — US$ 9.99
+
+Use os arquivos deste ZIP na raiz do mesmo repositório do projeto.
+O index.html deve continuar junto de styles.css, script.js, tracking.js,
+images/, fonts/ e api/.
+
+ALTERAÇÕES
+- Textos da página, botões, FAQ, modais, SEO, textos alternativos e rótulos
+  de acessibilidade adaptados para inglês americano.
+- “Riscos” traduzido como “designs”; uso de “tea towels”.
+- Instruções de impressão adaptadas para US Letter ou A4, com Fit to Page.
+- Oferta no site: US$ 9.99, pagamento único e sem assinatura.
+- Valor/moeda dos eventos já presentes: 9.99 / USD.
+- Dados estruturados do produto: price 9.99 e priceCurrency USD.
+- Datas visíveis no formato americano MM/DD/AAAA.
+- Removidos da copy os valores antigos em reais e o parcelamento brasileiro.
+  A antiga ancoragem foi substituída por um resumo do conteúdo incluso,
+  sem inventar um preço anterior em dólares.
+
+PRESERVAÇÃO
+- Somente index.html, styles.css e script.js foram alterados.
+- As 57 imagens da pasta images/ mantêm os mesmos nomes, caminhos e bytes.
+- Fontes e mockup_desktop.png preservados.
+- Elementos, classes, IDs, seletores, atributos de controle e referências
+  de imagens do HTML preservados.
+- A lógica dos carrosséis, FAQ, animações, navegação e modais foi mantida.
+- tracking.js e api/capi.js estão idênticos aos arquivos recebidos.
+- Link da Hotmart, identificadores de anúncios e produto e e-mail de
+  contato preservados.
+
+VERIFICAÇÕES REALIZADAS
+- Sintaxe dos arquivos JavaScript e scripts inline.
+- JSON do produto e consistência do preço/moeda.
+- Comparação estrutural do HTML e integridade dos arquivos originais.
+- Referências locais de imagens, fontes, scripts, estilos e âncoras.
+- Navegador: setas e reprodução automática do carrossel de comparação;
+  animação dos dois carrosséis de designs e do carrossel de depoimentos;
+  abertura das seis perguntas do FAQ, mantendo uma aberta por vez;
+  abertura/fechamento dos termos e privacidade; navegação até a oferta;
+  propagação de parâmetros UTM aos links da Hotmart.
+- Layout em desktop e em quadros de navegador com larguras de 390, 360
+  e 320 pixels; sem excesso de largura horizontal nas páginas testadas.
+- Conferência visual da oferta de US$ 9.99 em largura de celular.
+
+CHECKOUT E HOSPEDAGEM
+O preço no código do site NÃO altera a oferta cadastrada na Hotmart.
+Configure o preço do checkout como US$ 9.99 na Hotmart. Caso a plataforma
+gere outro link para essa oferta, substitua as duas ocorrências do link
+de checkout em index.html. Não foi realizada compra de teste.
+
+O endpoint api/capi.js depende de hospedagem com suporte à função Node
+existente, como a configuração Vercel já utilizada pelo projeto, e das
+variáveis META_PIXEL_ID e META_ACCESS_TOKEN. As variáveis e o recebimento
+real de eventos nas contas de anúncios não foram verificados aqui.
+No preview, o envio externo de eventos foi isolado para não contaminar
+as métricas com os testes. Esse isolamento não está nos arquivos do ZIP.
+GitHub Pages sozinho não executa essa função de servidor.
+
+Os textos incorporados nas imagens foram mantidos conforme solicitado.
+Para substituí-las, use os mesmos nomes/caminhos e dimensões compatíveis.
+O pacote recebido não continha os PDFs nem a videoaula entregues ao cliente;
+esses materiais não foram traduzidos neste trabalho.
+
+O ZIP não inclui o histórico Git, os arquivos de teste nem o servidor de
+preview. Mantenha as configurações existentes da hospedagem e do repositório.

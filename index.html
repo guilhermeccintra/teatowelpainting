@@ -1,0 +1,3123 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+ 
+  <!-- =========================================================
+       CONFIGURAÇÕES BÁSICAS / SEO
+  ========================================================== -->
+
+  <meta charset="UTF-8">
+   
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Turn Plain Tea Towels into Beautiful Hand-Painted Creations"
+  >
+
+  <meta name="theme-color" content="#C4784A">
+
+  <title>Turn Plain Tea Towels into Beautiful Hand-Painted Creations</title>
+
+
+  <!-- =========================================================
+       OPEN GRAPH
+  ========================================================== -->
+
+  <meta
+    property="og:title"
+    content="Turn Plain Tea Towels into Beautiful Hand-Painted Creations"
+  >
+
+  <meta
+    property="og:description"
+    content="Get 120 exclusive designs, a step-by-step painting video lesson, and practical guides to create beautiful hand-painted tea towels."
+  >
+
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="en_US">
+
+
+  <!-- =========================================================
+       DNS PREFETCH PARA TRACKING
+  ========================================================== -->
+
+  <link rel="dns-prefetch" href="https://connect.facebook.net">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+
+  <!-- =========================================================
+       FONTES
+  ========================================================== -->
+
+  
+<!-- =========================================================
+     FONTES — CARREGAMENTO OTIMIZADO
+========================================================== -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+>
+
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+    media="print"
+    onload="this.media='all'"
+>
+
+<noscript>
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+    >
+</noscript>
+
+  
+  <!-- =========================================================
+       CSS
+  ========================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+
+  <!-- TRACKING CARREGADO APÓS CSS PARA REDUZIR BLOQUEIO -->
+<!-- =========================================================
+       GOOGLE TAG - GOOGLE ADS + GOOGLE ANALYTICS 4
+  ========================================================== -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18379872794"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    /* Google Ads */
+    gtag('config', 'AW-18379872794');
+
+    /* Google Analytics 4 */
+    gtag('config', 'G-04GHL0BCBB');
+  </script>
+
+
+<!-- =========================================================
+     META PIXEL + CAPI
+     PageView e ViewContent com deduplicação
+========================================================= -->
+
+<script>
+!function(f,b,e,v,n,t,s)
+{
+  if(f.fbq)return;
+
+  n=f.fbq=function(){
+    n.callMethod ?
+    n.callMethod.apply(n,arguments) :
+    n.queue.push(arguments);
+  };
+
+  if(!f._fbq)f._fbq=n;
+
+  n.push=n;
+  n.loaded=!0;
+  n.version='2.0';
+  n.queue=[];
+
+  t=b.createElement(e);
+  t.async=!0;
+  t.src=v;
+
+  s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s);
+
+}(
+  window,
+  document,
+  'script',
+  'https://connect.facebook.net/en_US/fbevents.js'
+);
+
+
+/* =========================================================
+   FUNÇÕES AUXILIARES
+========================================================= */
+
+function generateMetaEventId(eventName) {
+  return (
+    eventName +
+    '_' +
+    Date.now() +
+    '_' +
+    Math.random().toString(36).substring(2, 12)
+  );
+}
+
+function generateUuidV4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+function getCookie(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+function getExternalId() {
+  try {
+    var extId = localStorage.getItem('meta_external_id');
+    if (!extId) {
+      extId = generateUuidV4();
+      localStorage.setItem('meta_external_id', extId);
+    }
+    return extId;
+  } catch(e) {
+    return null;
+  }
+}
+
+function getStoredFbclid() {
+  try {
+    var savedTracking = JSON.parse(localStorage.getItem('traffic_tracking') || '{}');
+    return savedTracking.fbclid || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function buildFbc() {
+  // 1. Tenta recuperar do sessionStorage (já calculado nesta sessão)
+  try {
+    var sessionFbc = sessionStorage.getItem('meta_fbc');
+    if (sessionFbc) return sessionFbc;
+  } catch(e) {}
+
+  // 2. Prioridade para o cookie _fbc já criado pela Meta
+  var existingFbc = getCookie('_fbc');
+  if (existingFbc) {
+    try { sessionStorage.setItem('meta_fbc', existingFbc); } catch(e) {}
+    return existingFbc;
+  }
+
+  // 3. Tenta pegar fbclid da URL
+  var params = new URLSearchParams(window.location.search);
+  var urlFbclid = params.get('fbclid');
+
+  // 4. Se a URL atual não tiver, tenta usar o fbclid salvo pelo tracking.js
+  var fbclid = urlFbclid || getStoredFbclid();
+
+  if (!fbclid) {
+    return null;
+  }
+
+  var newFbc = 'fb.1.' + Date.now() + '.' + fbclid;
+  
+  try { sessionStorage.setItem('meta_fbc', newFbc); } catch(e) {}
+
+  return newFbc;
+}
+
+
+/* =========================================================
+   WAIT FOR FBP
+========================================================= */
+
+function waitForFbp(callback, maxWaitMs = 2000, intervalMs = 50) {
+  var elapsed = 0;
+  
+  var check = function() {
+    var fbp = getCookie('_fbp');
+    if (fbp) {
+      callback(fbp);
+    } else if (elapsed >= maxWaitMs) {
+      callback(null); // Timeout
+    } else {
+      elapsed += intervalMs;
+      setTimeout(check, intervalMs);
+    }
+  };
+  
+  check();
+}
+
+
+/* =========================================================
+   ENVIA EVENTO PARA CAPI
+========================================================= */
+
+function sendMetaCapi(eventName, eventId, eventCustomData = {}) {
+  // Ler valores consistentes
+  var currentFbc = buildFbc();
+  var currentExternalId = getExternalId();
+  
+  waitForFbp(function(currentFbp) {
+    var payload = {
+      eventName: eventName,
+      eventId: eventId,
+      eventSourceUrl: window.location.href,
+      eventCustomData: eventCustomData,
+      fbp: currentFbp || undefined,
+      fbc: currentFbc || undefined,
+      externalId: currentExternalId || undefined
+    };
+
+    fetch('/api/capi', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).catch(function(error) {
+      console.warn('Erro ao enviar Meta CAPI:', error);
+    });
+  });
+}
+
+
+/* =========================================================
+   INICIALIZA PIXEL
+========================================================= */
+
+var globalExternalId = getExternalId();
+
+if (globalExternalId) {
+  fbq('init', '1901694047194455', { external_id: globalExternalId });
+} else {
+  fbq('init', '1901694047194455');
+}
+
+
+/* =========================================================
+   PAGEVIEW
+   Browser + Server
+========================================================= */
+
+var pageViewEventId = generateMetaEventId('PageView');
+
+fbq(
+  'track',
+  'PageView',
+  {},
+  { eventID: pageViewEventId }
+);
+
+sendMetaCapi('PageView', pageViewEventId);
+
+
+/* =========================================================
+   VIEWCONTENT
+   Browser + Server
+========================================================= */
+
+var viewContentEventId = generateMetaEventId('ViewContent');
+
+var viewContentData = {
+  content_name: '120 Tea Towel Painting Designs',
+  content_category: 'Arts & Crafts - Fabric Painting',
+  content_ids: ['120-riscos-pano-de-prato'],
+  content_type: 'product',
+  value: 9.99,
+  currency: 'USD'
+};
+
+fbq(
+  'track',
+  'ViewContent',
+  viewContentData,
+  { eventID: viewContentEventId }
+);
+
+sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
+
+</script>
+
+
+  <!-- =========================================================
+       SCHEMA.ORG PRODUCT
+  ========================================================== -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "120 Tea Towel Painting Designs",
+    "description": "Get 120 ready-to-transfer fabric painting designs, a step-by-step video lesson, and helpful bonus guides, even if you have never drawn or painted before.",
+    "category": "Arts & Crafts > Fabric Painting",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "USD",
+      "price": "9.99"
+    },
+    "brand": {
+      "@type": "Brand",
+      "name": "Tea Towel Painting Collection"
+    }
+  }
+  </script>
+
+
+
+  <script src="tracking.js" defer></script>
+
+</head>
+
+
+<body>
+
+  <!-- =========================================================
+       META PIXEL - FALLBACK SEM JAVASCRIPT
+  ========================================================== -->
+
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=1901694047194455&ev=PageView&noscript=1"
+      alt=""
+    >
+  </noscript>
+
+  <!-- RESTANTE DO SEU SITE CONTINUA AQUI -->
+
+  <div class="promo-bar">
+
+    <span class="promo-message">
+    ⚠️ Offer ends today, <span class="promo-date-highlight" id="promo-date"></span>
+</span>
+
+</div>
+
+    
+<!-- HERO -->
+<section class="hero bg-default" id="inicio">
+
+    <div class="container">
+
+        <div class="hero-content centered">
+          
+
+
+<!-- HEADLINE -->
+
+<h1 class="hero-title">
+
+    <span class="hero-eyebrow">
+        DISCOVER YOUR CREATIVE SIDE
+    </span>
+
+    <h2 class="hero-final__title">
+                Turn plain tea towels
+                <span>into beautiful hand-painted creations</span>
+           
+            </h2>
+
+</h1>
+
+<!-- MECANISMO SIMPLES -->
+
+<div class="hero-method">
+
+    <p>
+        Get <strong>120 ready-to-transfer fabric painting designs</strong>, a step-by-step video lesson to help you start painting, and helpful bonus guides, <strong>even if you have never drawn or painted before</strong>. 
+    </p>
+
+</div>
+
+<!-- =====================================================
+     CARROSSEL NO LUGAR DO MOCKUP
+===================================================== -->
+
+<div
+    class="comparison-carousel hero-comparison-carousel"
+    data-comparison-carousel
+    aria-label="Tea towel painting designs and finished examples"
+>
+
+    <div
+        class="comparison-viewport"
+        data-comparison-viewport
+    >
+
+        <div
+            class="comparison-track"
+            data-comparison-track
+        >
+
+<!-- =====================================================
+     COMPARAÇÃO 1
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    BEFORE: DESIGN
+                </span>
+
+                <img
+                    src="images/risco-01.webp"
+                    alt="Printable design ready to transfer onto a tea towel"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    FINISHED PAINTING
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-01-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-01.webp"
+                        alt="Tea towel painted using the design"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+
+<!-- =====================================================
+     COMPARAÇÃO 2
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    BEFORE: DESIGN
+                </span>
+
+                <img
+                    src="images/risco-02.webp"
+                    alt="Design ready to print and transfer"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    FINISHED PAINTING
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-02-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-02.webp"
+                        alt="Tea towel painted using the same design"
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+
+<!-- =====================================================
+     COMPARAÇÃO 3
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    BEFORE: DESIGN
+                </span>
+
+                <img
+                    src="images/risco-03.webp"
+                    alt="Painting design ready to transfer onto fabric"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    FINISHED PAINTING
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-03-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-03.webp"
+                        alt="Finished tea towel painted using the design"
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+
+<!-- =====================================================
+     COMPARAÇÃO 4
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    BEFORE: DESIGN
+                </span>
+
+                <img
+                    src="images/risco-04.webp"
+                    alt="Design ready to transfer onto a tea towel"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    FINISHED PAINTING
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-04-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-04.webp"
+                        alt="Tea towel painted using a ready-made design"
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+
+<!-- =====================================================
+     COMPARAÇÃO 5
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    BEFORE: DESIGN
+                </span>
+
+                <img
+                    src="images/risco-05.webp"
+                    alt="Design ready to print and paint"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    FINISHED PAINTING
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-05-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-05.webp"
+                        alt="Finished hand-painted tea towel"
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+</div>
+
+</div>
+
+<button type="button" class="comparison-button comparison-button-prev" data-comparison-prev aria-label="View previous comparison">
+    <span aria-hidden="true">‹</span>
+</button>
+
+<button type="button" class="comparison-button comparison-button-next" data-comparison-next aria-label="View next comparison">
+    <span aria-hidden="true">›</span>
+</button>
+
+</div>   
+
+
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="bloco_01"
+  >
+    I WANT TO START PAINTING
+  </a>
+
+</div>
+
+
+
+<!-- AVATARES + BENEFÍCIO DOS RISCOS -->
+
+<div class="hero-collection-proof hero-social-proof-row">
+
+    <div class="hero-social-proof-stars">
+        <span class="stars">★★★★★</span>
+    </div>
+
+    <span class="hero-social-proof-divider"></span>
+
+    <div class="hero-social-proof-avatars">
+
+        <div class="hero-collection-proof__avatars">
+            <img src="images/avatar1.webp" alt="">
+            <img src="images/avatar2.webp" alt="">
+            <img src="images/avatar3.webp" alt="">
+            <img src="images/avatar4.webp" alt="">
+        </div>
+
+        <span class="hero-social-proof-text"><strong>1,639+ students!</strong></span>
+
+    </div>
+
+</div>       
+          
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     GALERIA DE RISCOS — CARROSSEL ÚNICO
+========================================================= -->
+
+<section class="risks-gallery bg-white fade-in" id="riscos">
+
+    <div class="container">
+
+
+        <div class="text-center risks-gallery-heading">
+
+
+            <span class="section-tag">
+                A look inside the collection
+            </span>
+
+
+            <h2 class="section-title">
+
+                Explore some of the
+
+                <span>
+                    120 exclusive designs
+                </span>
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Designs ready to print, transfer, and turn into beautiful paintings for your tea towels.
+
+            </p>
+
+
+        </div>
+
+
+
+
+        <!-- =====================================================
+     CARROSSEL CONTÍNUO DE RISCOS
+====================================================== -->
+
+
+<div class="risks-marquee">
+
+
+    <div class="risks-track">
+
+
+        <!-- =========================
+             FRUTAS
+        ========================== -->
+
+
+        <img 
+            src="images/frutas-01.webp"
+            alt="Fruit design for tea towel painting"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/frutas-02.webp"
+            alt="Fruit design for fabric painting"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/frutas-03.webp"
+            alt="Printable fruit design"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/frutas-04.webp"
+            alt="Fruit design ready to paint"
+            loading="lazy"
+            decoding="async"
+        >
+
+
+
+        <!-- =========================
+             CAFÉ E COZINHA
+        ========================== -->
+
+
+        <img 
+            src="images/cafeecozinha-01.webp"
+            alt="Coffee and kitchen painting design"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/cafeecozinha-02.webp"
+            alt="Kitchen design for tea towel painting"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/cafeecozinha-03.webp"
+            alt="Printable coffee and kitchen design"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/cafeecozinha-04.webp"
+            alt="Design ready to transfer"
+            loading="lazy"
+            decoding="async"
+        >
+
+
+
+        <!-- =========================
+             FLORES
+        ========================== -->
+
+
+        <img 
+            src="images/flores-01.webp"
+            alt="Flower painting design"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/flores-02.webp"
+            alt="Flower design for tea towel painting"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/flores-03.webp"
+            alt="Floral design for fabric painting"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/flores-04.webp"
+            alt="Flower design ready to print"
+            loading="lazy"
+            decoding="async"
+        >
+
+
+
+        <!-- =========================
+             ANIMAIS
+        ========================== -->
+
+
+        <img 
+            src="images/animais-01.webp"
+            alt="Animal design for tea towel painting"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/animais-02.webp"
+            alt="Animal design for fabric painting"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/animais-03.webp"
+            alt="Printable animal design"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/animais-04.webp"
+            alt="Animal design ready to paint"
+            loading="lazy"
+            decoding="async"
+        >
+
+
+
+        <!-- =========================
+             REPETIÇÃO PARA LOOP
+        ========================== -->
+
+
+        <img src="images/frutas-01.webp" alt="" loading="lazy">
+        <img src="images/cafeecozinha-01.webp" alt="" loading="lazy">
+        <img src="images/flores-01.webp" alt="" loading="lazy">
+        <img src="images/animais-01.webp" alt="" loading="lazy">
+
+
+    </div>
+
+
+</div>
+
+<!-- =====================================================
+     SEGUNDO CARROSSEL DE RISCOS - DIREÇÃO CONTRÁRIA
+====================================================== -->
+
+<div class="risks-marquee risks-marquee-reverse">
+
+    <div class="risks-track">
+
+    <img src="images/frutas-01.webp" alt="">
+    <img src="images/frutas-02.webp" alt="">
+    <img src="images/frutas-03.webp" alt="">
+    <img src="images/frutas-04.webp" alt="">
+
+
+    <img src="images/cafeecozinha-01.webp" alt="">
+    <img src="images/cafeecozinha-02.webp" alt="">
+    <img src="images/cafeecozinha-03.webp" alt="">
+    <img src="images/cafeecozinha-04.webp" alt="">
+
+
+    <img src="images/flores-01.webp" alt="">
+    <img src="images/flores-02.webp" alt="">
+    <img src="images/flores-03.webp" alt="">
+    <img src="images/flores-04.webp" alt="">
+
+
+    <img src="images/animais-01.webp" alt="">
+    <img src="images/animais-02.webp" alt="">
+    <img src="images/animais-03.webp" alt="">
+    <img src="images/animais-04.webp" alt="">
+
+
+    <!-- MESMO LOOP DO PRIMEIRO -->
+
+    <img src="images/frutas-01.webp" alt="">
+    <img src="images/cafeecozinha-01.webp" alt="">
+    <img src="images/flores-01.webp" alt="">
+    <img src="images/animais-01.webp" alt="">
+
+</div>
+
+</div>
+
+
+
+        <!-- =====================================================
+             TEMAS INCLUÍDOS
+        ====================================================== -->
+
+
+        <div class="risks-themes">
+
+
+            <h3>
+                Your design themes include:
+            </h3>
+
+
+
+            <div class="risks-theme-list">
+
+
+                <span>
+                    🌸 Flowers
+                </span>
+
+
+                <span>
+                    🍓 Fruit
+                </span>
+
+
+                <span>
+                    ☕ Coffee &amp; Kitchen
+                </span>
+
+
+                <span>
+                    🐔 Chickens
+                </span>
+
+
+                <span>
+                    🐾 Animals
+                </span>
+
+
+                <span>
+                    🍰 Sweet Treats
+                </span>
+
+
+                <span>
+                    ➕ And More
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="bloco_02"
+  >
+    I WANT TO START PAINTING
+  </a>
+
+</div>
+
+    </div>
+
+
+</section>
+
+
+
+ <!-- =========================================================
+     BENEFÍCIOS DO PRODUTO
+========================================================= -->
+
+<section class="benefits-section bg-white fade-in">
+
+    <div class="container">
+
+
+        <div class="text-center benefits-heading">
+
+            <span class="section-tag">
+                What you get
+            </span>
+
+
+            <h2 class="section-title">
+                More than designs,
+                <span>a simple way to create</span>
+            </h2>
+
+
+            <p class="section-subtitle">
+                Everything is organized to help you bring your ideas to life and turn plain tea towels into beautiful hand-painted pieces.
+            </p>
+
+        </div>
+
+
+
+        <div class="benefits-grid">
+
+
+            <article class="benefit-card">
+
+                <div class="benefit-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Create without drawing
+                </h3>
+
+                <p>
+                    Print your designs, transfer them to fabric, and start painting with confidence.
+                </p>
+
+            </article>
+
+
+
+            <article class="benefit-card">
+
+                <div class="benefit-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    Spend less time searching
+                </h3>
+
+                <p>
+                    Choose your next project from an organized collection of designs in a variety of themes.
+                </p>
+
+            </article>
+
+
+
+            <article class="benefit-card">
+
+                <div class="benefit-icon">
+                    💝
+                </div>
+
+                <h3>
+                    Make pieces to keep or sell
+                </h3>
+
+                <p>
+                    Turn plain tea towels into thoughtful gifts, home decor, or handmade pieces to sell.
+                </p>
+
+            </article>
+
+
+
+            <article class="benefit-card">
+
+                <div class="benefit-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Learn the whole process
+                </h3>
+
+                <p>
+                    Follow the painting video lesson and guides to transferring designs and choosing colors.
+                </p>
+
+            </article>
+
+
+        </div>
+
+
+
+        <div class="benefits-footer">
+
+
+    <div class="benefits-footer-icon">
+        ✓
+    </div>
+
+
+    <div class="benefits-footer-text">
+
+        <strong>
+            Your materials are organized and ready to use.
+        </strong>
+
+        <span>
+            Pick a design, transfer it to fabric, and let your creativity take over.
+        </span>
+
+    </div>         
+
+</div>
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="bloco_03"
+  >
+    I WANT TO START PAINTING
+  </a>
+
+</div>
+     
+</section>
+
+
+  <!-- =========================================================
+     BÔNUS EXCLUSIVOS
+     ========================================================= -->
+<section class="bonuses bonuses-dark fade-in" id="bonus">
+
+    <div class="container">
+
+        <div class="text-center bonuses-heading">
+
+            <span class="section-tag">
+                Bonus Resources
+            </span>
+
+            <h2 class="section-title">
+                You also get
+                <span>4 exclusive bonuses</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Helpful extras to make painting easier, improve your results, and help you get started with confidence.
+            </p>
+
+        </div>
+
+        <div class="bonuses-grid">
+
+            
+
+            <!-- BÔNUS 1 -->
+            <article class="bonus-card">
+
+                <div class="bonus-image">
+
+                    <span class="bonus-badge">
+                        BONUS 1
+                    </span>
+
+                    <img
+                        src="images/bonus-pintura.webp"
+                        alt="Fabric painting bonus cover"
+                        loading="lazy"
+                                         decoding="async"
+                        width="1000"
+                        height="1000"
+                    >
+
+                </div>
+
+                <div class="bonus-content">
+
+                    <h3>Video Lesson: Fabric Painting for Beginners</h3>
+
+                    <p>
+                        Follow each step of fabric painting, from preparation to finishing touches, with clear explanations for beginners.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+           <!-- BÔNUS 2 -->
+            <article class="bonus-card">
+
+                <div class="bonus-image">
+
+                    <span class="bonus-badge">
+                        BONUS 2
+                    </span>
+
+                    <img
+                        src="images/bonus-transferencia.webp"
+                        alt="Design Transfer Guide cover"
+                        loading="lazy"
+                                         decoding="async"
+                        width="1000"
+                        height="1000"
+                    >
+
+                </div>
+
+                <div class="bonus-content">
+
+                    <h3>Design Transfer Guide</h3>
+
+                    <p>
+                        Learn to transfer your designs onto tea towels with fabric transfer paper, avoiding crooked outlines, gaps, and unwanted marks.
+                    </p>
+
+                </div>
+
+            </article>
+          
+
+            <!-- BÔNUS 3 -->
+            <article class="bonus-card">
+
+                <div class="bonus-image">
+
+                    <span class="bonus-badge">
+                        BONUS 3
+                    </span>
+
+                    <img
+                        src="images/bonus-cores.webp"
+                        alt="Color Pairing Guide cover"
+                        loading="lazy"
+                                         decoding="async"
+                        width="1000"
+                        height="1000"
+                    >
+
+                </div>
+
+                <div class="bonus-content">
+
+                    <h3>Color Pairing Guide</h3>
+
+                    <p>
+                        Discover harmonious color palettes to make choosing paints easier and bring your designs to life.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- BÔNUS 4 -->
+            <article class="bonus-card">
+
+                <div class="bonus-image">
+
+                    <span class="bonus-badge">
+                        BONUS 4
+                    </span>
+
+                    <img
+                        src="images/bonus-vendas.webp"
+                        alt="Getting Started Selling Your Handmade Pieces guide cover"
+                        loading="lazy"
+                                         decoding="async"
+                        width="1000"
+                        height="1000"
+                    >
+
+                </div>
+
+                <div class="bonus-content">
+
+                    <h3>Getting Started Selling Your Handmade Pieces</h3>
+
+                    <p>
+                        Learn how to price your pieces, put together gift sets, promote your work, and find your first customers.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <!-- Informação final -->
+        <div class="bonuses-summary">
+
+            <div class="bonuses-summary-icon" aria-hidden="true">
+                ✓
+            </div>
+
+            <div class="bonuses-summary-text">
+
+                <strong>
+                    All four bonuses are included.
+                </strong>
+
+                <span>
+                    Get all 120 designs and four bonus resources at no extra cost.
+                </span>
+
+            </div>
+
+        </div>
+      
+    </div>
+
+ <div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="bloco_04"
+  >
+    I WANT TO START PAINTING
+  </a>
+
+</div>
+
+</section>
+
+ 
+<!-- =========================================================
+     PINTURAS DE QUEM JÁ COMEÇOU
+========================================================= -->
+
+<section
+    class="customer-results fade-in"
+    id="depoimentos"
+>
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <div class="customer-results-heading container text-center">
+
+        <span class="section-tag">
+            Creations from our customers
+        </span>
+
+        <h2 class="section-title">
+            See what our customers are
+            <span>painting</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Explore finished projects shared by customers who have brought these designs to life.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         CARROSSEL INFINITO
+    ====================================================== -->
+
+    <div
+        class="testimonials-marquee"
+        data-testimonials-marquee
+        aria-label="Paintings shared by customers"
+    >
+
+        <div
+            class="testimonials-track"
+            data-testimonials-track
+        >
+
+            <!-- =================================================
+                 GRUPO ORIGINAL
+            ================================================== -->
+
+            <div class="testimonials-group">
+
+                <!-- DEPOIMENTO 1 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-01.webp"
+                        alt="Customer review showing a rose painted on a tea towel"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 2 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-02.webp"
+                        alt="Customer showing lemons painted on a tea towel"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 3 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-03.webp"
+                        alt="Customer showing a teacup painted on a tea towel"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 4 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-04.webp"
+                        alt="Customer review showing a cake painted on a tea towel"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 5 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-05.webp"
+                        alt="Customer showing a dog painted on a tea towel"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 6 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-06.webp"
+                        alt="Beginner customer review showing bananas painted on a tea towel"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+            </div>
+
+
+            <!-- =================================================
+                 CÓPIA PARA LOOP INFINITO
+            ================================================== -->
+
+            <div
+                class="testimonials-group"
+                aria-hidden="true"
+            >
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-01.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-02.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-03.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-04.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-05.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-06.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         OBSERVAÇÃO
+    ====================================================== -->
+
+    <p class="testimonials-note">
+        Results shared by customers. Your experience and finished pieces may vary depending on your practice and materials.
+    </p>
+
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="bloco_05"
+  >
+    I WANT TO START PAINTING
+  </a>
+
+</div>
+ 
+
+</section>
+
+
+ 
+   <!-- =========================================================
+     BLOCO DE DOR / IDENTIFICAÇÃO
+========================================================= -->
+
+<section class="pain-section bg-default fade-in">
+
+    <div class="container">
+
+        <div class="text-center pain-heading">
+
+            <span class="section-tag">
+                Before you begin
+            </span>
+
+
+            <h2 class="section-title">
+
+                Have you ever wondered:
+
+                <span>
+                    "Can I really do this?"
+                </span>
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Many people would love to paint, but hold back because they are afraid they will not know how.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="pain-grid">
+
+
+            <article class="pain-card">
+
+                <div class="pain-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    "I can't draw"
+                </h3>
+
+                <p>
+                    You see beautiful handmade pieces and wonder if you could ever create something like them.
+                </p>
+
+            </article>
+
+
+
+            <article class="pain-card">
+
+                <div class="pain-icon">
+                    😰
+                </div>
+
+                <h3>
+                    "I'm afraid of making mistakes"
+                </h3>
+
+                <p>
+                    Not knowing how to transfer a design or choose colors can make it hard to start.
+                </p>
+
+            </article>
+
+
+
+            <article class="pain-card">
+
+                <div class="pain-icon">
+                    ⏳
+                </div>
+
+                <h3>
+                    "I don't know where to start"
+                </h3>
+
+                <p>
+                    Searching for designs, techniques, and supplies can feel overwhelming.
+                </p>
+
+            </article>
+
+
+
+        </div>
+
+
+
+        <div class="pain-footer">
+
+
+    <div class="pain-footer-icon">
+        ✓
+    </div>
+
+
+    <div class="pain-footer-text">
+
+        <strong>
+            You do not need any previous experience.
+        </strong>
+
+        <span>
+            Just follow the steps and begin your first painting.
+        </span>
+
+    </div>
+
+
+</div>
+
+
+    </div>
+
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="bloco_06"
+  >
+    I WANT TO START PAINTING
+  </a>
+
+</div>
+
+
+ 
+</section>
+  
+  
+<!-- =========================================================
+     COMO TRANSFERIR O RISCO PARA O TECIDO
+     ========================================================= -->
+<section class="transfer-process bg-white fade-in" id="como-funciona">
+
+    <div class="container">
+
+        <div class="text-center transfer-process-heading">
+
+            <span class="section-tag">
+                Simple steps to get started
+            </span>
+
+            <h2 class="section-title">
+                See how easy it is to transfer a design onto a
+                <span>tea towel</span>
+            </h2>
+
+            <p class="section-subtitle">
+                No drawing skills needed. Print your design, then use fabric transfer paper to trace the outlines onto your tea towel before painting.
+            </p>
+
+        </div>
+
+        <div class="transfer-process-grid">
+
+            <!-- ETAPA 1 -->
+            <article class="transfer-process-card">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        01
+                    </span>
+
+                    <img
+                        src="images/transferencia-01.webp"
+                        alt="Design printed on a sheet of paper"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Print your design</h3>
+
+                    <p>
+                        Choose one of the 120 designs and print it on US Letter or A4 paper. Select Fit to Page if needed.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- ETAPA 2 -->
+            <article class="transfer-process-card transfer-process-card-highlight">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        02
+                    </span>
+
+                    <span class="transfer-process-badge">
+                        TRANSFER PAPER
+                    </span>
+
+                    <img
+                        src="images/transferencia-02.webp"
+                        alt="Fabric transfer paper placed on a tea towel"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Place the transfer paper</h3>
+
+                    <p>
+                        Place the <strong>fabric transfer paper</strong>
+                        on the towel with the transfer side facing the fabric.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- ETAPA 3 -->
+            <article class="transfer-process-card">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        03
+                    </span>
+
+                    <img
+                        src="images/transferencia-03.webp"
+                        alt="Printed design placed over transfer paper and a tea towel"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Add your printed design</h3>
+
+                    <p>
+                        Lay the printed design over the transfer paper and secure the edges so it stays in place.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- ETAPA 4 -->
+            <article class="transfer-process-card">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        04
+                    </span>
+
+                    <img
+                        src="images/transferencia-04.webp"
+                        alt="Tracing a design with a pencil to transfer the outlines onto fabric"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Trace the outlines</h3>
+
+                    <p>
+                        Trace the design with a pencil or stylus to transfer the outlines onto the towel.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- ETAPA 5 -->
+            <article class="transfer-process-card">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        05
+                    </span>
+
+                    <img
+                        src="images/transferencia-05.webp"
+                        alt="Transferred design on a tea towel, ready to paint"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Remove the paper and paint</h3>
+
+                    <p>
+                        Lift off the design and transfer paper. The outlines will be on the fabric, ready to paint.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <div class="transfer-process-summary">
+
+            <div class="transfer-process-summary-icon" aria-hidden="true">
+                ✓
+            </div>
+
+            <div class="transfer-process-summary-content">
+
+                <strong>
+                    The Design Transfer Guide is included.
+                </strong>
+
+                <p>
+                    Get clear instructions for using fabric transfer paper, even if you have never transferred a design before.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+ <div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="bloco_07"
+  >
+    I WANT TO START PAINTING
+  </a>
+
+</div>
+
+ 
+
+</section>
+
+
+<!-- =========================================================
+     PARA QUEM É
+     ========================================================= -->
+
+<section class="for-who-section bg-default fade-in">
+
+    <div class="container">
+
+        <div class="text-center for-who-heading">
+
+            <span class="section-tag">
+                Made for you
+            </span>
+
+
+            <h2 class="section-title">
+                This collection is for anyone ready to
+                <span>start painting</span>
+            </h2>
+
+
+            <p class="section-subtitle">
+                Even with no experience, you will have ready-to-use designs and simple steps to create your first pieces.
+            </p>
+
+        </div>
+
+
+
+        <div class="for-who-grid">
+
+
+            <article class="for-who-card">
+
+                <div class="for-who-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Just getting started
+                </h3>
+
+                <p>
+                    For anyone who has always wanted to paint but never knew where to begin.
+                </p>
+
+            </article>
+
+
+
+            <article class="for-who-card">
+
+                <div class="for-who-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    No drawing skills needed
+                </h3>
+
+                <p>
+                    Use printable designs to create beautiful paintings without drawing from scratch.
+                </p>
+
+            </article>
+
+
+
+            <article class="for-who-card">
+
+                <div class="for-who-icon">
+                    💝
+                </div>
+
+                <h3>
+                    Create something unique
+                </h3>
+
+                <p>
+                    Decorate your home, make thoughtful gifts, or enjoy a new creative hobby.
+                </p>
+
+            </article>
+
+
+
+        </div>
+
+
+
+        <div class="for-who-footer">
+
+    <div class="for-who-footer-icon">
+        ✓
+    </div>
+
+
+    <div class="for-who-footer-text">
+
+        <strong>
+            You do not need to be a natural artist.
+        </strong>
+
+        <span>
+            Start with a design you love and a willingness to create.
+        </span>
+
+    </div>
+
+</div>
+
+
+  <div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="bloco_08"
+  >
+    I WANT TO START PAINTING
+  </a>
+
+</div>
+
+
+     
+</section>
+
+
+
+ <!-- 9. FINAL CTA SECTION -->
+<section class="final-cta bg-default fade-in" id="oferta">
+    <div class="container">
+        <div class="offer-box">
+
+    <h2 class="final-cta-title">
+
+        Your complete digital collection for painting tea towels, even as a beginner
+
+    </h2>
+
+<!-- MOCKUP DA COLEÇÃO -->
+
+<div class="offer-mockup">
+
+    <img 
+        src="images/MOCKUP_NOVO.webp"
+        alt="Collection of 120 exclusive tea towel painting designs"
+        width="800"
+        height="800"
+        loading="lazy"
+        decoding="async"
+    >
+
+</div>
+
+
+    <!-- ENTREGA -->
+
+    <div class="offer-delivery">
+
+
+        <div class="offer-delivery-content">
+
+<ul>
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            120 Exclusive Tea Towel Painting Designs
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Video Lesson: Fabric Painting for Beginners
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Design Transfer Guide
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Color Pairing Guide
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Getting Started Selling Your Handmade Pieces
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Lifetime access to the materials
+        </span>
+
+    </li>
+
+ 
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            7-day money-back guarantee
+        </span>
+
+    </li>
+
+
+</ul>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- ANCORAGEM -->
+
+
+    <div class="offer-anchor">
+
+       <span> 120 designs + all 4 bonuses included
+        </span>
+
+
+    </div>
+
+
+
+
+
+    <!-- PREÇO -->
+
+
+    <div class="final-offer-price">
+
+
+        <div class="final-offer-label">
+
+    Today's special offer 
+    <strong id="offer-date"></strong>:
+
+</div>
+
+
+
+        <div class="final-offer-current-price">
+
+            US$ 9.99
+
+        </div>
+
+
+
+
+        <div class="final-offer-installments">
+
+            One-time payment.
+
+            <strong>
+                No subscription.
+            </strong>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- CTA -->
+
+
+    <div class="hero-buttons">
+
+
+        <a
+        href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
+        class="btn-primary btn-large"
+        data-cta="oferta_checkout">
+         
+
+
+            GET THE COMPLETE COLLECTION
+
+
+        </a>
+
+
+    </div>
+
+
+
+
+
+    <!-- SEGURANÇA -->
+
+
+    <div class="offer-security">
+
+
+        🔒 Secure checkout
+
+
+        <span>
+
+            Instant access once your payment is confirmed.
+
+        </span>
+
+
+    </div>
+
+
+
+</div>
+</section>
+
+  
+  <!-- =========================================================
+     GARANTIA DE 7 DIAS
+     ========================================================= -->
+<section class="guarantee-section fade-in" id="garantia">
+
+    <div class="container">
+
+        <div class="guarantee-wrapper">
+
+            <!-- Selo principal -->
+            <div class="guarantee-seal" aria-hidden="true">
+
+                <div class="guarantee-seal-icon">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="54"
+                        height="54"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                </div>
+
+                <span class="guarantee-seal-label">
+                    MONEY-BACK
+                </span>
+
+                <strong class="guarantee-seal-days">
+                    7 DAYS
+                </strong>
+
+                <span class="guarantee-seal-bottom">
+                    GUARANTEE
+                </span>
+
+            </div>
+
+            <!-- Conteúdo principal -->
+            <div class="guarantee-content">
+
+                <span class="section-tag">
+                    Shop with confidence
+                </span>
+
+                <h2 class="section-title">
+                    You have 7 days to
+                    <span>explore the collection</span>
+                </h2>
+
+                <p class="guarantee-description">
+                    Get access to the files and explore the designs and bonuses. If the collection does not meet your expectations, you can request a refund within the guarantee period and under its terms.
+                </p>
+
+                <ul class="guarantee-checklist">
+
+                    <li>
+                        <span class="guarantee-check" aria-hidden="true">✓</span>
+                        <span>Access all 120 designs once your payment is confirmed.</span>
+                    </li>
+
+                    <li>
+                        <span class="guarantee-check" aria-hidden="true">✓</span>
+                        <span>Explore the files and all four included bonuses.</span>
+                    </li>
+
+                    <li>
+                        <span class="guarantee-check" aria-hidden="true">✓</span>
+                        <span>See whether the collection is right for you.</span>
+                    </li>
+
+                    <li>
+                        <span class="guarantee-check" aria-hidden="true">✓</span>
+                        <span>Request a refund under the guarantee terms.</span>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOBRE A CRIADORA DA COLEÇÃO
+========================================================= -->
+
+<section class="creator-section bg-default fade-in">
+
+    <div class="container">
+
+        <div class="creator-wrapper">
+
+
+            <!-- IMAGEM PRINCIPAL -->
+
+            <div class="creator-image">
+
+                <img 
+                    src="images/criadora-pano.webp"
+                    alt="Collection creator holding a hand-painted tea towel"
+                    loading="lazy"
+                    decoding="async"
+                    width="700"
+                    height="875"
+                >
+
+            </div>
+
+
+
+            <!-- CONTEÚDO -->
+
+            <div class="creator-content">
+
+
+                <span class="section-tag">
+                    Meet the creator
+                </span>
+
+
+                <h2 class="creator-title">
+
+                    A love of painting,
+
+                    <span>
+                        shared to inspire you
+                    </span>
+
+                </h2>
+
+
+
+                <p>
+                    I love painting tea towels, and I know how hard it can be to find beautiful, clear designs that are ready to use.
+                </p>
+
+
+                <p>
+                    That is why I put this collection together with care: 120 exclusive designs organized by theme, so you can print, transfer, and start painting without spending hours searching online.
+                </p>
+
+
+                <p>
+                    Each design was chosen to make creating easier, whether you paint for yourself, make gifts for loved ones, or want to sell your handmade pieces.
+                </p>
+
+
+
+                <div class="creator-signature">
+
+                    Maria Silva
+
+                    <small>
+                        COLLECTION CREATOR<br>
+                        120 EXCLUSIVE DESIGNS
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+  
+
+  <!-- 11. FAQ SECTION -->
+  <section class="faq bg-white fade-in" id="duvidas">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Here to help</span>
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        <p class="section-subtitle">Answers to common questions about the collection.</p>
+      </div>
+
+      <div class="faq-list">
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Is this a physical product?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>No. This is a digital product. Your PDF files will be available to download once your payment is confirmed. Nothing will be shipped to you.</p>
+          </div>
+        </div>
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How will I receive my files?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Once your payment is confirmed, you will receive an email with a link to download all 120 designs as PDF files.</p>
+          </div>
+        </div>
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Can I print the designs more than once?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Keep your downloaded files and print the designs whenever you need them, at no extra charge, under the collection's terms of use.</p>
+          </div>
+        </div>
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Do I need a special printer?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>No. Use a standard inkjet or laser printer with US Letter or A4 paper. Select Fit to Page in your print settings if needed.</p>
+          </div>
+        </div>
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How do I transfer a design onto a tea towel?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Print your design, place fabric transfer paper on your tea towel, lay the design on top, and trace it with a pencil or stylus. It is that simple!</p>
+          </div>
+        </div>
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Are the files available right away?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! As soon as your payment is confirmed, you can download the files and get started.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- =========================================================
+     FECHAMENTO FINAL DA OFERTA (ESTRUTURA DE CHECKOUT)
+========================================================= -->
+<section class="final-offer-close">
+
+    <div class="container">
+
+        <div class="final-offer-close__box">
+
+            <span class="section-tag">
+                Get the collection
+            </span>
+
+            <h2 class="final-offer-close__title">
+                Start your next project
+                <span>for just US$ 9.99</span>
+            </h2>
+
+            <p class="final-offer-close__text">
+                Today's offer: all 120 designs and 4 bonuses. Get secure access now.
+            </p>
+
+            <div class="hero-buttons">
+                <a
+                    href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
+                    class="btn-primary btn-large"
+                    data-cta="fechamento_final_oferta"
+                >
+                    GET THE COMPLETE COLLECTION
+                </a>
+            </div>
+
+            <div class="final-offer-close__security">
+                🔒 Secure checkout. Instant access once your payment is confirmed.
+            </div>
+
+            <div class="final-offer-close__divider"></div>
+
+            <ul class="final-offer-close__list">
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>120 Tea Towel Painting Designs</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Video Lesson: Fabric Painting for Beginners</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Design Transfer Guide</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Color Pairing Guide</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Getting Started Selling Your Handmade Pieces</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Lifetime access to the materials</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>7-day money-back guarantee</span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+ 
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="footer-content">
+
+    <div class="footer-brand">
+      <h3 class="footer-brand-name">Tea Towel Painting Collection</h3>
+
+      <p>
+        Digital PDF files ready to print and use.
+      </p>
+    </div>
+
+    <div class="footer-links">
+
+      <div class="footer-links-group">
+        <h4>Links</h4>
+
+        <ul>
+          <li>
+            <a href="#inicio">Home</a>
+          </li>
+
+          <li>
+            <a href="#duvidas">FAQ</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Legal</h4>
+
+        <ul>
+          <li>
+            <a href="#" id="openPrivacy">
+              Privacy Policy
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="openTerms">
+              Terms of Use
+            </a>
+          </li>
+
+          <li>
+            <a href="mailto:pinturaempanodeprato@outlook.com">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      &copy; 2026 Tea Towel Painting Collection. All rights reserved.
+    </p>
+  </div>
+
+</footer>
+
+  
+<!-- =========================================================
+     MODAL - TERMOS DE USO
+========================================================= -->
+
+<div
+  id="termsModal"
+  class="legal-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="termsTitle"
+>
+
+  <div class="legal-modal-content">
+
+    <button
+      class="legal-modal-close"
+      id="closeTerms"
+      type="button"
+      aria-label="Close Terms of Use"
+    >
+      &times;
+    </button>
+
+    <h2 id="termsTitle">
+      Terms of Use
+    </h2>
+
+    <div class="legal-modal-text">
+
+      <p>
+        By purchasing the digital product
+        <strong>120 Exclusive Tea Towel Painting Designs</strong>, you agree to the terms below.
+      </p>
+
+      <h3>1. Digital Product</h3>
+
+      <p>
+        This product consists of digital files made available for download once payment is confirmed. No physical product will be shipped.
+      </p>
+
+      <h3>2. Use of the Materials</h3>
+
+      <p>
+        The files are for the purchaser's own use. You may print the designs and use them to create handmade pieces.
+      </p>
+
+      <h3>3. Copyright</h3>
+
+      <p>
+        You may not resell, share, distribute, make available, or reproduce the digital files as a digital product, whether for free or for payment.
+      </p>
+
+      <h3>4. Product Access</h3>
+
+      <p>
+        Once payment is confirmed, product access will be provided according to the instructions sent by the payment platform.
+      </p>
+
+      <h3>5. Results</h3>
+
+      <p>
+        Results may vary depending on each person's experience, materials, and techniques.
+      </p>
+
+      <h3>6. Support</h3>
+
+      <p>
+        If you have questions about accessing the product, please email
+        <a href="mailto:pinturaempanodeprato@outlook.com">
+          pinturaempanodeprato@outlook.com
+        </a>.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL - POLÍTICA DE PRIVACIDADE
+========================================================= -->
+
+<div
+  id="privacyModal"
+  class="legal-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="privacyTitle"
+>
+
+  <div class="legal-modal-content">
+
+    <button
+      class="legal-modal-close"
+      id="closePrivacy"
+      type="button"
+      aria-label="Close Privacy Policy"
+    >
+      &times;
+    </button>
+
+    <h2 id="privacyTitle">
+      Privacy Policy
+    </h2>
+
+    <div class="legal-modal-text">
+
+      <p>
+        This Privacy Policy outlines how information provided by users may be used when browsing this website and purchasing this product.
+      </p>
+
+      <h3>1. Information We Collect</h3>
+
+      <p>
+        We may receive information you voluntarily provide during checkout, such as your name, email address, and other details needed to process your order.
+      </p>
+
+      <h3>2. How We Use Information</h3>
+
+      <p>
+        Information may be used to process orders, provide product access and support, and improve the user experience.
+      </p>
+
+      <h3>3. Payments</h3>
+
+      <p>
+        Payments are processed by the payment platform. We do not directly store complete payment card details.
+      </p>
+
+      <h3>4. Sharing Information</h3>
+
+      <p>
+        Personal information is not sold to third parties. Data may be shared only when needed to operate the service, process payments, or comply with legal obligations.
+      </p>
+
+      <h3>5. Cookies</h3>
+
+      <p>
+        This website may use cookies and similar technologies to improve browsing, analyze performance, and help personalize the user experience.
+      </p>
+
+      <h3>6. Contact</h3>
+
+      <p>
+        If you have questions about privacy or the use of your information, please email
+        <a href="mailto:pinturaempanodeprato@outlook.com">
+          pinturaempanodeprato@outlook.com
+        </a>.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+  <script src="script.js" defer></script>
+ 
+ 
+</body>
+</html>
